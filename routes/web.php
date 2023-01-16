@@ -26,11 +26,11 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 
 
-Route::get('/admin', function () {return redirect('/admin/dashboard');})->middleware('auth');
+Route::get('/admin', function () {return redirect('/admin/dashboard');})->middleware('admin.auth');
     Route::prefix('admin')->group(function(){
         Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
         Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
-        Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('admin.login');
+        Route::get('/login', [LoginController::class, 'show'])->middleware('admin.guest')->name('admin.login');
         Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('admin.login.perform');
         Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
         Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
