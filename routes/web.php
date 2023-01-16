@@ -36,7 +36,7 @@ Route::get('/admin', function () {return redirect('/admin/dashboard');})->middle
         Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
         Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
         Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.home')->middleware('admin.auth');
     });
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
