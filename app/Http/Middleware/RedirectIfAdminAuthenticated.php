@@ -20,7 +20,7 @@ class RedirectIfAdminAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         if (Auth::guard('admin')->check()) {
-            return redirect('admin.home');
+            return redirect('admin');
         }
 
         return $next($request);
